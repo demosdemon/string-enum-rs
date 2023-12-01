@@ -1,0 +1,32 @@
+[alias]
+__vendored = [
+    "--config",
+    "source.crates-io.replace-with = \"vendored-sources\"",
+    "--frozen",
+    "--offline",
+]
+
+v-check = "__vendored check"
+v-clippy = "__vendored clippy"
+v-build = "__vendored build"
+v-run = "__vendored run"
+v-test = "__vendored test"
+
+v = "vendor --verbose --versioned-dirs"
+
+[source.vendored-sources]
+directory = "vendor"
+
+[build]
+rustflags = [
+    "-W", "let_underscore_drop",
+    # "-W", "unused_crate_dependencies",
+    "-W", "clippy::uninlined_format_args",
+    "-D", "non_ascii_idents",
+    "-W", "clippy::cargo_common_metadata",
+    # "-W", "clippy::multiple_crate_versions",
+    "-W", "clippy::negative_feature_names",
+    "-W", "clippy::redundant_feature_names",
+    "-D", "clippy::wildcard_dependencies",
+    "-D", "clippy::unwrap_used",
+]

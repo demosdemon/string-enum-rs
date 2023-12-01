@@ -1,0 +1,13 @@
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[workspace]
+members = ["crates/*"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+authors = ["Brandon LeBlanc <brandon@leblanc.codes>"]
+repository = "https://github.com/demosdemon/string-enum-rs"
+homepage = "https://github.com/demosdemon/string-enum-rs"
+edition = "2021"
+publish = false

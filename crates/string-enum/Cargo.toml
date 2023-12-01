@@ -1,0 +1,20 @@
+[package]
+name = "string-enum"
+version.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+edition.workspace = true
+publish.workspace = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+default = ["std"]
+std = []
+
+[dependencies]
+string-enum-derive = { version = "0.1.0", path = "../string-enum-derive" }
+
+[dev-dependencies]
+serde = { version = "1.0.193", features = ["derive"] }
