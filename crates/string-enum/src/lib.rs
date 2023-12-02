@@ -37,17 +37,17 @@ mod test {
 
     use serde::Deserialize;
     use serde::Serialize;
-    use string_enum::StringEnum;
 
+    // use string_enum::StringEnum;
     use crate as string_enum;
     use crate::InvalidVariantError;
 
-    #[derive(Debug, Clone, Copy, PartialEq, StringEnum)]
+    #[derive(Debug, Clone, Copy, PartialEq, string_enum::StringEnum)]
     enum EmptyEnum {}
 
     #[test]
     fn test_non_exhaustive() {
-        #[derive(Debug, Clone, Copy, PartialEq, StringEnum)]
+        #[derive(Debug, Clone, Copy, PartialEq, string_enum::StringEnum)]
         #[non_exhaustive]
         enum NonExhaustiveEnum {
             Alpha,
@@ -62,7 +62,7 @@ mod test {
 
     #[test]
     fn test_with_rename_rule() {
-        #[derive(Debug, Clone, Copy, PartialEq, StringEnum)]
+        #[derive(Debug, Clone, Copy, PartialEq, string_enum::StringEnum)]
         #[str = "camelCase"]
         enum WithRenameRule {
             SelectOne,
@@ -80,7 +80,9 @@ mod test {
 
     #[test]
     fn test_with_serde_rules() {
-        #[derive(Debug, Clone, Copy, PartialEq, StringEnum, Serialize, Deserialize)]
+        #[derive(
+            Debug, Clone, Copy, PartialEq, string_enum::StringEnum, Serialize, Deserialize,
+        )]
         #[serde(rename_all = "camelCase")]
         enum WithSerdeRules {
             SelectOne,
@@ -98,7 +100,9 @@ mod test {
 
     #[test]
     fn test_with_mixed_serde_rules() {
-        #[derive(Debug, Clone, Copy, PartialEq, StringEnum, Serialize, Deserialize)]
+        #[derive(
+            Debug, Clone, Copy, PartialEq, string_enum::StringEnum, Serialize, Deserialize,
+        )]
         #[serde(rename_all(serialize = "camelCase", deserialize = "snake_case"))]
         enum WithMixedSerdeRules {
             #[serde(rename(deserialize = "select1"))]
@@ -118,7 +122,9 @@ mod test {
 
     #[test]
     fn test_with_ignore_serde_rules() {
-        #[derive(Debug, Clone, Copy, PartialEq, StringEnum, Serialize, Deserialize)]
+        #[derive(
+            Debug, Clone, Copy, PartialEq, string_enum::StringEnum, Serialize, Deserialize,
+        )]
         #[serde(rename_all(serialize = "camelCase", deserialize = "snake_case"))]
         #[str = "PascalCase"]
         enum WithIgnoreSerdeRules {
@@ -142,7 +148,7 @@ mod test {
 
     fn test_enum<E>(cases: &[(E, &str, &str)])
     where
-        E: Debug + PartialEq + FromStr<Err = InvalidVariantError> + StringEnum,
+        E: Debug + PartialEq + FromStr<Err = InvalidVariantError> + string_enum::StringEnum,
     {
         assert_eq!(E::VARIANTS.len(), cases.len());
         let name = core::any::type_name::<E>();
