@@ -120,7 +120,7 @@ impl Enum {
 
             impl ::core::fmt::Display for #ident {
                 fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
-                    ::core::fmt::Formatter::write_str(f, string_enum::StringEnum::as_str(self))
+                    ::core::fmt::Formatter::pad(f, string_enum::StringEnum::as_str(self))
                 }
             }
         }

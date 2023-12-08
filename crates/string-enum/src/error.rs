@@ -17,7 +17,7 @@ impl core::default::Default for InvalidVariantError {
 
 impl core::fmt::Display for InvalidVariantError {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-        f.write_str("invalid variant")
+        f.pad("invalid variant")
     }
 }
 
