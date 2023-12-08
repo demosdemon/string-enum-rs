@@ -10,11 +10,11 @@ publish.workspace = true
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [features]
-default = ["std"]
-std = []
+default = ["derive"]
+derive = ["dep:string-enum-derive"]
 
 [dependencies]
-string-enum-derive = { version = "0.1.0", path = "../string-enum-derive" }
+string-enum-derive = { version = "0.1.0", path = "../string-enum-derive", optional = true }
 
 [dev-dependencies]
 serde = { version = "1.0.193", features = ["derive"] }

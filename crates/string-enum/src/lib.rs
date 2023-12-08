@@ -1,7 +1,9 @@
-#![cfg_attr(not(feature = "std"), no_std)]
+#![feature(error_in_core)]
+#![no_std]
 
 mod error;
 
+#[cfg(feature = "derive")]
 pub use string_enum_derive::StringEnum;
 
 pub use crate::error::InvalidVariantError;
@@ -28,7 +30,7 @@ pub fn parse_str_ignore_ascii_case<T: StringEnum>(s: &str) -> Result<T, InvalidV
         .ok_or(InvalidVariantError::new())
 }
 
-#[cfg(test)]
+#[cfg(all(test, feature = "derive"))]
 mod test {
     #![allow(clippy::unwrap_used)]
 
@@ -38,7 +40,6 @@ mod test {
     use serde::Deserialize;
     use serde::Serialize;
 
-    // use string_enum::StringEnum;
     use crate as string_enum;
     use crate::InvalidVariantError;
 
