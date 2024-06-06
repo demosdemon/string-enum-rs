@@ -11,3 +11,17 @@ repository = "https://github.com/demosdemon/string-enum-rs"
 homepage = "https://github.com/demosdemon/string-enum-rs"
 edition = "2021"
 publish = false
+
+[workspace.lints.rust]
+let_underscore_drop = "warn"
+# unused_crate_dependencies = "warn"
+non_ascii_idents = "deny"
+
+[workspace.lints.clippy]
+uninlined_format_args = "warn"
+cargo_common_metadata = "warn"
+# multiple_crate_versions = "warn"
+negative_feature_names = "warn"
+redundant_feature_names = "warn"
+wildcard_dependencies = "deny"
+unwrap_used = "deny"
