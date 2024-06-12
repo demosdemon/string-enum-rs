@@ -11,6 +11,7 @@ repository = "https://github.com/demosdemon/string-enum-rs"
 homepage = "https://github.com/demosdemon/string-enum-rs"
 edition = "2021"
 publish = false
+rust-version = "1.81"
 
 [workspace.lints.rust]
 let_underscore_drop = "warn"

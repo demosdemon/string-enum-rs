@@ -1,4 +1,5 @@
 [toolchain]
-channel = "nightly"
+# TODO: switch to stable once 1.81 is released; error_in_core was stabilized in 1.81
+channel = "nightly-2024-06-11"
 profile = "minimal"
 components = ["rustfmt", "clippy"]

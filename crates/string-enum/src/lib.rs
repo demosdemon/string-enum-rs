@@ -1,4 +1,3 @@
-#![feature(error_in_core)]
 #![no_std]
 
 mod error;
