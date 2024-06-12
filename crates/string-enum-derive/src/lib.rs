@@ -67,6 +67,8 @@ impl Enum {
             variants,
         } = self;
 
+        let len_variants = variants.len();
+
         let const_variants_elems = variants.iter().map(|v| {
             let ident = &v.ident;
             quote!(Self::#ident)
@@ -88,6 +90,11 @@ impl Enum {
         } else {
             TokenStream::new()
         };
+
+        let from_str_variants = variants.iter().map(|v| {
+            let ident = &v.ident;
+            variant_name(ident, rename_all.deserialize_ref(), v.deserialize_ref())
+        });
 
         let from_str_arms = variants.iter().map(|v| {
             let ident = &v.ident;
@@ -111,9 +118,11 @@ impl Enum {
                 type Err = string_enum::InvalidVariantError;
 
                 fn from_str(s: &str) -> ::core::result::Result<Self, Self::Err> {
+                    const FROM_STR_VARIANTS: [&str; #len_variants] = [#(#from_str_variants,)*];
+
                     match s {
                         #(#from_str_arms,)*
-                        _ => ::core::result::Result::Err(string_enum::InvalidVariantError::new()),
+                        _ => ::core::result::Result::Err(string_enum::InvalidVariantError::new(&FROM_STR_VARIANTS)),
                     }
                 }
             }
