@@ -10,6 +10,7 @@ authors = ["Brandon LeBlanc <brandon@leblanc.codes>"]
 repository = "https://github.com/demosdemon/string-enum-rs"
 homepage = "https://github.com/demosdemon/string-enum-rs"
 edition = "2021"
+license = "MIT OR Apache-2.0"
 publish = false
 rust-version = "1.81"
 
